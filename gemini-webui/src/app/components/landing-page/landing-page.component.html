@@ -1,0 +1,34 @@
+<div class="chatbot-page">
+  <div class="chat-window">
+    <div
+      *ngFor="let item of chatHistory"
+      class="message-container"
+      [ngClass]="item.sender"
+    >
+      <div class="message">
+        <span class="responses" [innerHTML]="formatText(item.message)"></span>
+        <!-- <ngx-loading
+          [show]="loading"
+          [config]="{ backdropBorderRadius: '3px' }"
+        ></ngx-loading> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="input-container">
+    <input
+      type="text"
+      [(ngModel)]="userInput"
+      (keyup.enter)="sendMessage()"
+      placeholder="Type your message here..."
+      [ngClass]="{ 'pointer-cursor': loading, 'default-cursor': !loading }"
+    />
+    <button
+      class="send-button"
+      (click)="sendMessage()"
+      [ngClass]="{ 'pointer-cursor': loading, 'default-cursor': !loading }"
+    >
+      Send
+    </button>
+  </div>
+</div>
